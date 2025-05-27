@@ -1,4 +1,5 @@
-# OKX Web3 Portfolio & Analytics Platform
+![alt text](https://cdn.dorahacks.io/static/files/197114b00b74cec06fc3abd4e4e9eb0e.png@128h.webp)
+# Solanalyze
 
 A full-stack Web3 application for portfolio analytics, wallet management, and blockchain data exploration. Built with Next.js, React, Tailwind CSS, shadcn/ui, TypeScript, and Prisma. The platform provides seamless integration with Solana wallets, real-time balance and transaction tracking, and a robust API for blockchain and exchange data.
 

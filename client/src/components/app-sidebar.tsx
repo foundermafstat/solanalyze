@@ -29,23 +29,23 @@ import {
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Solanalyze",
+    email: "solanalyze@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Solanalyze",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      plan: "DeFi AI Agent",
     },
     {
-      name: "Acme Corp.",
+      name: "Solanalyze",
       logo: AudioWaveform,
-      plan: "Startup",
+      plan: "DeFi AI Agent",
     },
     {
-      name: "Evil Corp.",
+      name: "Solanalyze",
       logo: Command,
       plan: "Free",
     },
