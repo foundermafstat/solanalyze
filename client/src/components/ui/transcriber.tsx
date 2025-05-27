@@ -88,26 +88,25 @@ function ConversationItem({ message }: { message: Conversation }) {
 
  return (
    <motion.div
-     initial={{ opacity: 0, x: isUser ? 20 : -20, y: 10 }}
+     initial={{ opacity: 0, x: isUser ? 10 : -10, y: 5 }}
      animate={{ opacity: 1, x: 0, y: 0 }}
-     transition={{ duration: 0.3, ease: "easeOut" }}
-     className={`flex items-start gap-3 ${isUser ? "justify-end" : ""}`}
+     transition={{ duration: 0.2, ease: "easeOut" }}
+     className={`flex items-start gap-2 ${isUser ? "justify-end" : ""}`}
    >
      {/* Assistant Avatar */}
      {isAssistant && (
-       <Avatar className="w-8 h-8 shrink-0">
-         {/* <AvatarImage src="/placeholder-user.jpg" /> */}
-         <AvatarFallback>AI</AvatarFallback>
+       <Avatar className="w-6 h-6 shrink-0 mt-0.5">
+         <AvatarFallback className="text-xs">AI</AvatarFallback>
        </Avatar>
      )}
 
      {/* Message Bubble */}
      <div
-       className={`${
+       className={`max-w-[90%] rounded-md px-2.5 py-1.5 text-xs ${
          isUser
-           ? "bg-primary text-background"
-           : "bg-secondary dark:text-foreground"
-       } px-4 py-2 rounded-lg max-w-[70%] motion-preset-slide-up-right`}
+           ? "bg-primary/90 text-primary-foreground rounded-tr-none"
+           : "bg-muted/30"
+       }`}
      >
        {(isUser && msgStatus === "speaking") || msgStatus === "processing" ? (
          // Show wave animation for "speaking" status
@@ -159,10 +158,10 @@ export default function Transcriber({ conversation }: TranscriberProps) {
  }, [conversation]);
 
  return (
-   <div className="flex flex-col w-full h-full mx-auto bg-background rounded-lg shadow-lg overflow-hidden dark:bg-background">
+   <div className="flex flex-col w-full h-full bg-background rounded-lg overflow-hidden dark:bg-background border">
      {/* Header */}
-     <div className="bg-secondary px-4 py-3 flex items-center justify-between dark:bg-secondary">
-       <div className="font-medium text-foreground dark:text-foreground">
+     <div className="bg-secondary/50 px-3 py-1.5 flex items-center justify-between border-b dark:bg-secondary/50">
+       <div className="text-sm font-medium text-foreground/80 dark:text-foreground/80">
         {t('transcriber.title')}
        </div>
      </div>
@@ -170,7 +169,7 @@ export default function Transcriber({ conversation }: TranscriberProps) {
      {/* Body */}
      <div
        ref={scrollRef}
-       className="flex-1 h-full overflow-y-auto p-4 space-y-4 z-50 scrollbar-thin scrollbar-thumb-primary"
+       className="flex-1 h-full overflow-y-auto p-2 space-y-2 text-sm"
      >
        <AnimatePresence>
          {displayableMessages.map((message) => (

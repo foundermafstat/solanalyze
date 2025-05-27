@@ -45,21 +45,21 @@ const data = {
   teams: [
     {
       id: "1",
-      name: "Trading",
+      name: "Solanalyze",
       logo: BarChart2,
-      plan: "Pro",
+      plan: "Defi AI Assistant",
     },
     {
       id: "2",
       name: "Analytics",
       logo: Activity,
-      plan: "Free",
+      plan: "Defi AI Assistant",
     },
     {
       id: "3",
       name: "Portfolio",
       logo: PieChart,
-      plan: "Free",
+      plan: "Defi AI Assistant",
     },
   ],
   navMain: [
@@ -162,39 +162,59 @@ export function AppSidebar({ ...props }: ComponentProps<typeof Sidebar>) {
             <NavMain items={data.navMain} />
           </TabsContent>
           
-          <TabsContent value="assistant" className="mt-0 flex-1 overflow-hidden">
-            <div className="h-full">
-						<motion.div 
-          className="w-full max-w-md bg-card text-card-foreground rounded-xl border shadow-sm p-6 space-y-4"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
-        >
-          <VoiceSelector value={voice} onValueChange={setVoice} />
-          
-          <div className="flex flex-col items-center gap-4">
-            <BroadcastButton 
-              isSessionActive={isSessionActive} 
-              onClick={handleStartStopClick}
-            />
-          </div>
-          {msgs?.length > 4 && <TokenUsageDisplay messages={msgs} />}
-          {status && (
-            <motion.div 
-              className="w-full flex flex-col gap-2"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <MessageControls conversation={conversation} msgs={msgs} />
-              <TextInput 
-                onSubmit={sendTextMessage}
-                disabled={!isSessionActive}
-              />
-            </motion.div>
-          )}
-        </motion.div>
+          <TabsContent value="assistant" className="mt-2 flex-1 flex flex-col h-[calc(100vh-150px)]">
+            <div className="flex flex-col h-full">
+              <motion.div 
+                className="w-full bg-card text-card-foreground rounded-lg border shadow-sm p-2 flex flex-col h-full"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
+              >
+                <div className="flex flex-col h-full">
+                  {/* Voice and Broadcast Controls */}
+                  <div className="space-y-2 mb-2">
+                    <div className="grid grid-cols-1 gap-2">
+                      <VoiceSelector value={voice} onValueChange={setVoice} />
+                      <BroadcastButton 
+                        isSessionActive={isSessionActive} 
+                        onClick={handleStartStopClick}
+                        className="w-full"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Transcript Area with Fixed Height */}
+                  <div className="border rounded-md overflow-hidden flex flex-col flex-1 min-h-0">
+                    <div className="overflow-y-auto flex-1 p-2">
+                      {status && (
+                        <motion.div 
+                          className="w-full"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <MessageControls conversation={conversation} msgs={msgs} />
+                        </motion.div>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {/* Fixed Input Area */}
+                  <div className="mt-2 pt-2 border-t">
+                    <TextInput 
+                      onSubmit={sendTextMessage}
+                      disabled={!isSessionActive}
+                      placeholder={isSessionActive ? "Type a message..." : "Start session to chat"}
+                      className="w-full"
+                    />
+                    {msgs?.length > 2 && (
+                      <div className="mt-1">
+                        <TokenUsageDisplay messages={msgs} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </TabsContent>
         </Tabs>

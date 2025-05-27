@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Send } from "lucide-react"
@@ -8,12 +8,19 @@ import { Send } from "lucide-react"
 interface TextInputProps {
   onSubmit: (text: string) => void
   disabled?: boolean
+  placeholder?: string
+  className?: string
 }
 
-export function TextInput({ onSubmit, disabled = false }: TextInputProps) {
+export function TextInput({ 
+  onSubmit, 
+  disabled = false, 
+  placeholder = "Type a message...",
+  className = ""
+}: TextInputProps) {
   const [text, setText] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (text.trim()) {
       onSubmit(text.trim())
@@ -22,22 +29,27 @@ export function TextInput({ onSubmit, disabled = false }: TextInputProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full gap-2">
-      <Input
-        type="text"
-        placeholder="Type a message..."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        disabled={disabled}
-        className="flex-1"
-      />
-      <Button 
-        type="submit" 
-        disabled={disabled || !text.trim()}
-        size="icon"
+    <div className={className}>
+      <form 
+        onSubmit={handleSubmit} 
+        className="flex w-full gap-2"
       >
-        <Send className="h-4 w-4" />
-      </Button>
-    </form>
+        <Input
+          type="text"
+          placeholder={placeholder}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          disabled={disabled}
+          className="flex-1"
+        />
+        <Button 
+          type="submit" 
+          disabled={disabled || !text.trim()}
+          size="icon"
+        >
+          <Send className="h-4 w-4" />
+        </Button>
+      </form>
+    </div>
   )
 }
