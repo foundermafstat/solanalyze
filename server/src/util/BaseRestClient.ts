@@ -1,4 +1,6 @@
 import type { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
+import axios from 'axios';
+import type { EventEmitter } from 'node:events';
 
 import type { APIResponse, RestClientOptions } from '../types';
 import { signMessage } from './node-support';

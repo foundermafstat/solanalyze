@@ -1,58 +1,28 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Card, CardContent, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table"
 import { useTranslations } from "@/components/agent/translations-context"
 import { Message } from "@/types"
+import { cn } from "@/lib/utils"
 
 interface TokenUsageDisplayProps {
   messages: Message[]
+  className?: string
 }
 
-export function TokenUsageDisplay({ messages }: TokenUsageDisplayProps) {
-  const { t } = useTranslations();
-  return (
-    <>
-    { messages.length > 0 && (
-    <Accordion type="single" collapsible key="token-usage" className="w-full">
-      <AccordionItem value="token-usage">
-        <AccordionTrigger>
-          <CardTitle className="text-sm font-medium">{t('tokenUsage.usage')}</CardTitle>
-        </AccordionTrigger>
-        <AccordionContent>
-          <Card>
-            <CardContent>
-              <div className="space-y-1 mt-4">
-                {messages
-                  .filter((msg) => msg.type === 'response.done')
-                  .slice(-1)
-                  .map((msg) => {
-                    const tokenData = [
-                      { label: t('tokenUsage.total'), value: msg.response?.usage?.total_tokens },
-                      { label: t('tokenUsage.input'), value: msg.response?.usage?.input_tokens }, 
-                      { label: t('tokenUsage.output'), value: msg.response?.usage?.output_tokens }
-                    ];
+export function TokenUsageDisplay({ messages, className }: TokenUsageDisplayProps) {
+  const { t } = useTranslations()
+  
+  const lastMessage = messages
+    .filter((msg) => msg.type === 'response.done')
+    .slice(-1)[0]
 
-                    return (
-                      <Table key="token-usage-table">
-                        <TableBody>
-                          {tokenData.map(({label, value}) => (
-                            <TableRow key={label}>
-                              <TableCell className="font-medium motion-preset-focus">{label}</TableCell>
-                              <TableCell>{value}</TableCell>
-                            </TableRow>
-                          ))}
-                        </TableBody>
-                      </Table>
-                    );
-                  })}
-              </div>
-            </CardContent>
-          </Card>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-    )
-  }
-  </>
+  if (!lastMessage?.response?.usage) return null
+
+  const { total_tokens, input_tokens, output_tokens } = lastMessage.response.usage
+
+  return (
+    <div className={cn("text-xs text-muted-foreground flex items-center justify-end gap-4 mt-1", className)}>
+      <span>{t('tokenUsage.input')}: {input_tokens}</span>
+      <span>{t('tokenUsage.output')}: {output_tokens}</span>
+      <span className="font-medium">{t('tokenUsage.total')}: {total_tokens}</span>
+    </div>
   )
 } 

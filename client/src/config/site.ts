@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: "OpenAI Realtime Starter",
-  url: "https://openai-rt-shadcn.vercel.app",
-  description: "OpenAI Realtime Starter is a template for Realtime Voice AI with Shadcn UI components. It demonstrates tool calling with a WebRTC hook.",
-  author: "cameronking4",
+  name: "Solanalyze",
+  url: "https://solanalyze.vercel.app",
+  description: "Solanalyze is an advanced Solana blockchain analytics platform with AI-powered insights and real-time data visualization.",
+  author: "Solanalyze Team",
   links: {
-    twitter: "https://x.com/cameronyking4",
-    github: "https://github.com/cameronking4/shadcn-openai-realtime-api",
-    portfolio: "https://www.linkedin.com/in/cameronyking",
+    twitter: "https://twitter.com/solanalyze",
+    github: "https://github.com/foundermafstat/solanalyze",
+    documentation: "https://docs.solanalyze.xyz"
   }
 };
 

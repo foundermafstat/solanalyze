@@ -1,7 +1,7 @@
 {
-  "name": "okx-api",
+  "name": "solanalyze",
   "version": "2.0.5",
-  "description": "Complete & robust Node.js SDK for OKX's REST APIs and WebSockets, with TypeScript & end-to-end tests",
+  "description": "Defi AI Assistant",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
@@ -12,16 +12,16 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "clean": "rm -rf lib dist",
-    "build": "tsc",
+    "build": "tsc --noEmitOnError false",
     "build:clean": "npm run clean && npm run build",
-    "build:watch": "npm run clean && tsc --watch",
+    "build:watch": "npm run clean && tsc --watch --noEmitOnError false",
     "pack": "webpack --config webpack/webpack.config.js",
     "lint": "eslint src",
     "prepublish": "npm run build:clean",
     "betapublish": "npm publish --tag beta",
     "server": "nodemon server.js"
   },
-  "author": "Tiago Siebler (https://github.com/tiagosiebler)",
+  "author": "Ihor Sokolov (https://github.com/foundermafstat)",
   "contributors": [],
   "dependencies": {
     "axios": "^1.9.0",
@@ -54,35 +54,24 @@
     "webpack-cli": "^4.10.0"
   },
   "keywords": [
-    "okx",
+    "solanalyze",
     "okx api",
-    "okex",
-    "okex api",
-    "api",
-    "websocket",
-    "rest",
-    "rest api",
-    "usdt",
-    "trading bots",
-    "nodejs",
-    "node",
-    "trading",
-    "cryptocurrency",
-    "bitcoin",
-    "best"
+		"solana",
+		"solana api",
+		"solana websocket"
   ],
   "funding": {
     "type": "individual",
-    "url": "https://github.com/sponsors/tiagosiebler"
+    "url": "https://github.com/sponsors/foundermafstat"
   },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tiagosiebler/okx-api"
+    "url": "https://github.com/foundermafstat/solanalyze"
   },
   "bugs": {
-    "url": "https://github.com/tiagosiebler/okx-api/issues"
+    "url": "https://github.com/foundermafstat/solanalyze/issues"
   },
-  "homepage": "https://github.com/tiagosiebler/okx-api#readme",
+  "homepage": "https://github.com/foundermafstat/solanalyze#readme",
   "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971"
 }

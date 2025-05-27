@@ -50,14 +50,3 @@ export function getRestBaseUrl(
   }
 }
 
-export function isWsPong(response: any) {
-  if (response.pong || response.ping) {
-    return true;
-  }
-  return (
-    response.request &&
-    response.request.op === 'ping' &&
-    response.ret_msg === 'pong' &&
-    response.success === true
-  );
-}

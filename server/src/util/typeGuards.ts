@@ -58,6 +58,11 @@ export function isWsUnsubscribeEvent(evtData: unknown): boolean {
   return isWsEvent(evtData) && evtData.event === 'unsubscribe';
 }
 
+/** Check if the event is a pong message */
+export function isWsPong(evt: unknown): boolean {
+  return isWsEvent(evt) && evt.event === 'pong';
+}
+
 /** Information event */
 export function isConnCountEvent(evtData: unknown): boolean {
   return isWsEvent(evtData) && evtData.event === 'channel-conn-count';

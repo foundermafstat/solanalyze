@@ -1,7 +1,7 @@
-import { WsChannel } from './request';
+import type { WsChannel } from './request';
 
 export interface WsEvent {
-  event: 'error' | 'login' | 'subscribe' | 'unsubscribe' | 'channel-conn-count';
+  event: 'error' | 'login' | 'subscribe' | 'unsubscribe' | 'channel-conn-count' | 'pong';
   code?: string;
   msg?: string;
   arg?: any;

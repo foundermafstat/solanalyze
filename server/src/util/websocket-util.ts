@@ -276,15 +276,6 @@ export function getMaxTopicsPerSubscribeEvent(
   }
 }
 
-export function isWsPong(event: unknown): boolean {
-  return (
-    typeof event === 'object' &&
-    !!event &&
-    'data' in event &&
-    typeof event.data === 'string' &&
-    event.data === 'pong'
-  );
-}
 
 export const WS_EVENT_CODE_ENUM = {
   OK: '0',

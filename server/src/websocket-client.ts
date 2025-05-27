@@ -1,7 +1,7 @@
-import { EventEmitter } from 'events';
+import { EventEmitter } from 'node:events';
+import WebSocket from 'isomorphic-ws';
 
-import WebSocket from '../server/node_modules/isomorphic-ws';
-import {
+import type {
   APICredentials,
   WebsocketClientOptions,
   WsAuthRequest,
@@ -13,31 +13,50 @@ import {
   WsSubRequest,
   WsUnsubRequest,
 } from './types';
+
+import type {
+  WsTopic,
+  WsStoredState,
+} from './util/wsTypes';
 import {
-  DefaultLogger,
-  getMaxTopicsPerSubscribeEvent,
+  WsConnectionStateEnum,
+  PUBLIC_WS_KEYS,
   getWsKeyForTopicChannel,
+  getWsUrlForWsKey,
+  getMaxTopicsPerSubscribeEvent,
   isConnCountEvent,
+} from './util/wsTypes';
+import { WsKey } from './util/websocket-util';
+
+import {
   isWsDataEvent,
   isWsErrorEvent,
   isWsLoginEvent,
   isWsPong,
   isWsSubscribeEvent,
   isWsUnsubscribeEvent,
-  PRIVATE_WS_KEYS,
-  PUBLIC_WS_KEYS,
-  WS_KEY_MAP,
-  WsConnectionStateEnum,
-  WsStore,
-} from './util';
-import { signMessage } from './util/node-support';
+} from './util/typeGuards';
+
 import {
   getWsKeyForMarket,
-  getWsUrlForWsKey,
   safeTerminateWs,
   WS_EVENT_CODE_ENUM,
-  WsKey,
+  WS_KEY_MAP,
+  PRIVATE_WS_KEYS,
 } from './util/websocket-util';
+
+import { WsStore } from './util/WsStore';
+import { DefaultLogger } from './util/logger';
+import { signMessage } from './util/node-support';
+
+// Mock implementation for missing functions
+function handleBinaryMessage(): never {
+  throw new Error('handleBinaryMessage not implemented');
+}
+
+function handleMessage(): never {
+  throw new Error('handleMessage not implemented');
+}
 
 const loggerCategory = { category: 'okx-ws' };
 

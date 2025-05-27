@@ -1,4 +1,4 @@
-import WebSocket from '../../server/node_modules/isomorphic-ws';
+import WebSocket from 'isomorphic-ws';
 
 import { DefaultLogger } from './logger';
 import { WsKey } from './websocket-util';

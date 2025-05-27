@@ -20,7 +20,7 @@ const http = require('node:http');
 // Initialize OKX client with error handling
 let okx;
 try {
-  okx = require('./lib/index');
+  okx = require('./server/lib/index');
   debug('OKX client initialized successfully');
 } catch (error) {
   console.error('Failed to initialize OKX client:', error);
