@@ -13,7 +13,7 @@ export default function AccountBillsPage() {
   const fields = [
     {
       name: 'instType',
-      label: 'Тип инструмента',
+      label: 'Instrument type',
       type: 'select' as const,
       required: false,
       options: [
@@ -26,26 +26,26 @@ export default function AccountBillsPage() {
     },
     {
       name: 'ccy',
-      label: 'Валюта',
+      label: 'Currency',
       type: 'text' as const,
       required: false,
     },
     {
       name: 'type',
-      label: 'Тип счета',
+      label: 'Account type',
       type: 'select' as const,
       required: false,
       options: [
-        { label: 'Пополнение', value: '1' },
-        { label: 'Вывод', value: '2' },
-        { label: 'Торговля', value: '13' },
-        { label: 'Комиссия', value: '14' },
-        { label: 'Все', value: '' },
+        { label: 'Deposit', value: '1' },
+        { label: 'Withdrawal', value: '2' },
+        { label: 'Trading', value: '13' },
+        { label: 'Commission', value: '14' },
+        { label: 'All', value: '' },
       ],
     },
     {
       name: 'limit',
-      label: 'Лимит (количество записей)',
+      label: 'Limit (number of records)',
       type: 'text' as const,
       required: false,
     },
@@ -71,12 +71,12 @@ export default function AccountBillsPage() {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || 'Произошла ошибка при получении счетов');
+        throw new Error(result.message || 'Error getting bills');
       }
       
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла неизвестная ошибка');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
     }
@@ -84,8 +84,8 @@ export default function AccountBillsPage() {
 
   return (
     <ApiPageLayout 
-      title="Счета" 
-      description="Получение информации о счетах и финансовых операциях"
+      title="Bills" 
+      description="Get information about accounts and financial operations"
       apiEndpoint="/api/account/bills"
       docsUrl="https://www.okx.com/docs-v5/en/#rest-api-account-get-bills-details-last-7-days"
     >
@@ -93,8 +93,8 @@ export default function AccountBillsPage() {
         fields={fields}
         onSubmit={handleSubmit}
         isLoading={isLoading}
-        title="Параметры запроса"
-        description="Укажите необязательные параметры для фильтрации результатов."
+        title="Request parameters"
+        description="Specify optional parameters to filter the results."
       />
       
       <ApiResults 

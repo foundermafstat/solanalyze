@@ -13,13 +13,13 @@ export default function MarketBooksPage() {
   const fields = [
     {
       name: 'instId',
-      label: 'ID инструмента',
+      label: 'Instrument ID',
       type: 'text' as const,
       required: true,
     },
     {
       name: 'sz',
-      label: 'Размер (количество заявок)',
+      label: 'Size (number of orders)',
       type: 'text' as const,
       required: false,
     },
@@ -45,12 +45,12 @@ export default function MarketBooksPage() {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || 'Произошла ошибка при получении книги ордеров');
+        throw new Error(result.message || 'Error getting order book');
       }
       
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла неизвестная ошибка');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
     }
@@ -58,8 +58,8 @@ export default function MarketBooksPage() {
 
   return (
     <ApiPageLayout 
-      title="Книга ордеров" 
-      description="Получение данных книги ордеров для указанного инструмента"
+      title="Order book" 
+      description="Get order book data for the specified instrument"
       apiEndpoint="/api/market/books"
       docsUrl="https://www.okx.com/docs-v5/en/#rest-api-market-data-get-order-book"
     >
@@ -67,8 +67,8 @@ export default function MarketBooksPage() {
         fields={fields}
         onSubmit={handleSubmit}
         isLoading={isLoading}
-        title="Параметры запроса"
-        description="Укажите ID инструмента для получения книги ордеров. Опционально можно указать размер (количество заявок)."
+        title="Request parameters"
+        description="Specify the instrument ID to get the order book. Optionally, you can specify the size (number of orders)."
       />
       
       <ApiResults 

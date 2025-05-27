@@ -35,9 +35,9 @@ export async function GET(request: NextRequest) {
     // Возвращаем успешный ответ
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Ошибка при выполнении запроса:', error);
+    console.error('Error during request execution:', error);
     return NextResponse.json(
-      { message: 'Внутренняя ошибка сервера' },
+      { message: 'Internal server error' },
       { status: 500 }
     );
   }

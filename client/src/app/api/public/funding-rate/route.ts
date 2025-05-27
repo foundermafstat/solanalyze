@@ -33,9 +33,9 @@ export async function GET(request: NextRequest) {
 
     // Если ответ не успешный, возвращаем ошибку
     if (!response.ok) {
-      console.error('Ошибка при получении данных о ставке финансирования:', data);
+      console.error('Error getting funding rate:', data);
       return NextResponse.json(
-        { message: data.message || 'Ошибка при получении данных о ставке финансирования' },
+        { message: data.message || 'Error getting funding rate' },
         { status: response.status }
       );
     }
@@ -43,9 +43,9 @@ export async function GET(request: NextRequest) {
     // Возвращаем успешный ответ
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Ошибка при выполнении запроса:', error);
+    console.error('Error during request execution:', error);
     return NextResponse.json(
-      { message: 'Внутренняя ошибка сервера' },
+      { message: 'Internal server error' },
       { status: 500 }
     );
   }

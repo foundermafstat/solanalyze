@@ -13,39 +13,39 @@ export default function TradeOrderPage() {
   const fields = [
     {
       name: 'instId',
-      label: 'ID инструмента',
+      label: 'Instrument ID',
       type: 'text' as const,
       required: true,
     },
     {
       name: 'tdMode',
-      label: 'Режим торговли',
+      label: 'Trading mode',
       type: 'select' as const,
       required: true,
       options: [
-        { label: 'Кросс', value: 'cross' },
-        { label: 'Изолированный', value: 'isolated' },
-        { label: 'Кэш', value: 'cash' },
+        { label: 'Cross', value: 'cross' },
+        { label: 'Isolated', value: 'isolated' },
+        { label: 'Cash', value: 'cash' },
       ],
     },
     {
       name: 'side',
-      label: 'Сторона',
+      label: 'Side',
       type: 'select' as const,
       required: true,
       options: [
-        { label: 'Покупка', value: 'buy' },
-        { label: 'Продажа', value: 'sell' },
+        { label: 'Buy', value: 'buy' },
+        { label: 'Sell', value: 'sell' },
       ],
     },
     {
       name: 'ordType',
-      label: 'Тип ордера',
+      label: 'Order type',
       type: 'select' as const,
       required: true,
       options: [
-        { label: 'Лимитный', value: 'limit' },
-        { label: 'Рыночный', value: 'market' },
+        { label: 'Limit', value: 'limit' },
+        { label: 'Market', value: 'market' },
         { label: 'Post only', value: 'post_only' },
         { label: 'Fill or kill', value: 'fok' },
         { label: 'Immediate or cancel', value: 'ioc' },
@@ -53,13 +53,13 @@ export default function TradeOrderPage() {
     },
     {
       name: 'sz',
-      label: 'Размер ордера',
+      label: 'Order size',
       type: 'text' as const,
       required: true,
     },
     {
       name: 'px',
-      label: 'Цена ордера (не требуется для рыночных ордеров)',
+      label: 'Order price (not required for market orders)',
       type: 'text' as const,
       required: false,
     },
@@ -72,7 +72,7 @@ export default function TradeOrderPage() {
     try {
       // Проверка необходимости указания цены для лимитных ордеров
       if (['limit', 'post_only', 'fok', 'ioc'].includes(formData.ordType) && !formData.px) {
-        throw new Error('Для данного типа ордера необходимо указать цену');
+        throw new Error('For this order type, you must specify a price');
       }
       
       const response = await fetch('/api/trade/order', {
@@ -86,12 +86,12 @@ export default function TradeOrderPage() {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || 'Произошла ошибка при создании ордера');
+        throw new Error(result.message || 'Error creating order');
       }
       
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла неизвестная ошибка');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
     }
@@ -99,8 +99,8 @@ export default function TradeOrderPage() {
 
   return (
     <ApiPageLayout 
-      title="Создание ордера" 
-      description="Создание нового торгового ордера"
+      title="Order creation" 
+      description="Create a new trading order"
       apiEndpoint="/api/trade/order"
       docsUrl="https://www.okx.com/docs-v5/en/#rest-api-trade-place-order"
     >
@@ -109,8 +109,8 @@ export default function TradeOrderPage() {
         onSubmit={handleSubmit}
         isLoading={isLoading}
         method="POST"
-        title="Параметры ордера"
-        description="Укажите параметры для создания нового ордера. Обратите внимание, что для лимитных ордеров необходимо указать цену."
+        title="Order parameters"
+        description="Specify parameters for creating a new order. Note that for limit orders, you must specify a price."
       />
       
       <ApiResults 

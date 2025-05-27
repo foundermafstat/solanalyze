@@ -23,11 +23,11 @@ const ApiPageLayout: React.FC<ApiPageLayoutProps> = ({
 
   const getCategoryName = (cat: string): string => {
     const categoryMap: Record<string, string> = {
-      'account': 'Аккаунт',
-      'trade': 'Торговля',
-      'market': 'Рыночные данные',
-      'public': 'Публичные данные',
-      'system': 'Система',
+      'account': 'Account',
+      'trade': 'Trade',
+      'market': 'Market',
+      'public': 'Public',
+      'system': 'System',
     };
     return categoryMap[cat] || cat;
   };
@@ -36,10 +36,10 @@ const ApiPageLayout: React.FC<ApiPageLayoutProps> = ({
     <div className="min-h-screen">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="md:col-span-1 bg-white p-4 rounded-lg shadow-sm border border-gray-200 h-fit">
-          <h3 className="text-lg font-medium text-gray-800 mb-3">Навигация</h3>
+          <h3 className="text-lg font-medium text-gray-800 mb-3">Navigation</h3>
           <div className="space-y-1">
             <Link href="/" className="block text-blue-600 hover:text-blue-800 hover:underline mb-4">
-              ← На главную
+              ← Back to main page
             </Link>
             
             <div className="py-2">
@@ -74,7 +74,7 @@ const ApiPageLayout: React.FC<ApiPageLayoutProps> = ({
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-800 hover:underline"
                   >
-                    Документация
+                    Documentation
                   </a>
                 )}
               </div>

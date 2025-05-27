@@ -13,7 +13,7 @@ export default function AccountBalancePage() {
   const fields = [
     {
       name: 'ccy',
-      label: 'Валюта',
+      label: 'Currency',
       type: 'text' as const,
       required: false,
     },
@@ -36,12 +36,12 @@ export default function AccountBalancePage() {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || 'Произошла ошибка при получении баланса аккаунта');
+        throw new Error(result.message || 'Error getting account balance');
       }
       
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла неизвестная ошибка');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
     }
@@ -49,8 +49,8 @@ export default function AccountBalancePage() {
 
   return (
     <ApiPageLayout 
-      title="Баланс аккаунта" 
-      description="Получение информации о балансе на счету аккаунта"
+      title="Account balance" 
+      description="Get information about the account balance"
       apiEndpoint="/api/account/balance"
       docsUrl="https://www.okx.com/docs-v5/en/#rest-api-account-get-balance"
     >
@@ -58,8 +58,8 @@ export default function AccountBalancePage() {
         fields={fields}
         onSubmit={handleSubmit}
         isLoading={isLoading}
-        title="Параметры запроса"
-        description="Укажите необязательные параметры для фильтрации результатов."
+        title="Request parameters"
+        description="Specify optional parameters to filter the results."
       />
       
       <ApiResults 

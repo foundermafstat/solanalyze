@@ -68,38 +68,45 @@ const data = {
       url: "/",
       icon: Home,
       items: [
-        { title: "Overview", url: "/" },
-        { title: "Analytics", url: "/analytics" },
+        { title: "Home", url: "/" },
       ],
     },
     {
-      title: "Trading",
-      url: "/trading",
-      icon: BarChart2,
-      items: [
-        { title: "Spot", url: "/trading/spot" },
-        { title: "Futures", url: "/trading/futures" },
-        { title: "Options", url: "/trading/options" },
-      ],
-    },
-    {
-      title: "Wallet",
-      url: "/wallet",
+      title: "Account",
+      url: "/account",
       icon: Wallet,
       items: [
-        { title: "Overview", url: "/wallet" },
-        { title: "Deposit", url: "/wallet/deposit" },
-        { title: "Withdraw", url: "/wallet/withdraw" },
+        { title: "Balance", url: "/account/balance" },
+        { title: "Positions", url: "/account/positions" },
+        { title: "Bills", url: "/account/bills" },
       ],
     },
     {
       title: "Markets",
-      url: "/markets",
+      url: "/market",
       icon: LayoutGrid,
       items: [
-        { title: "All Pairs", url: "/markets" },
-        { title: "Favorites", url: "/markets/favorites" },
-        { title: "Gainers & Losers", url: "/markets/movers" },
+        { title: "Order Book", url: "/market/book" },
+        { title: "Candlesticks", url: "/market/candles" },
+        { title: "Ticker", url: "/market/ticket" },
+      ],
+    },
+		{
+      title: "System",
+      url: "/system",
+      icon: BarChart2,
+      items: [
+        { title: "Status", url: "/system/status" },
+      ],
+    },
+		{
+      title: "Trade",
+      url: "/trade",
+      icon: BarChart2,
+      items: [
+        { title: "Order", url: "/trade/order" },
+        { title: "Order History", url: "/trade/order-history" },
+        { title: "Pending Orders", url: "/trade/order-pending" },
       ],
     },
   ]

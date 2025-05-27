@@ -18,12 +18,12 @@ export default function SystemStatusPage() {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || 'Произошла ошибка при получении статуса системы');
+        throw new Error(result.message || 'Error getting system status');
       }
       
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла неизвестная ошибка');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
     }
@@ -35,8 +35,8 @@ export default function SystemStatusPage() {
 
   return (
     <ApiPageLayout 
-      title="Статус системы" 
-      description="Получение информации о текущем статусе системы и статусе API-ключей"
+      title="System status" 
+      description="Get information about the current status of the system and API key status"
       apiEndpoint="/api/system/status"
       docsUrl="https://www.okx.com/docs-v5/en/#rest-api-status"
     >
@@ -52,7 +52,7 @@ export default function SystemStatusPage() {
           </button>
         </div>
         <p className="text-gray-600 mt-2 mb-4">
-          Обновляет информацию о доступности API и статусе системы. Это бесплатный эндпоинт, который не требует аутентификации.
+          Updates information about API availability and system status. This is a free endpoint that does not require authentication.
         </p>
       </div>
       

@@ -18,9 +18,9 @@ export async function GET() {
 
     // Если ответ не успешный, возвращаем ошибку
     if (!response.ok) {
-      console.error('Ошибка при получении статуса системы:', data);
+      console.error('Error getting system status:', data);
       return NextResponse.json(
-        { message: data.message || 'Ошибка при получении статуса системы' },
+        { message: data.message || 'Error getting system status' },
         { status: response.status }
       );
     }
@@ -28,9 +28,9 @@ export async function GET() {
     // Возвращаем успешный ответ
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Ошибка при выполнении запроса:', error);
+    console.error('Error during request execution:', error);
     return NextResponse.json(
-      { message: 'Внутренняя ошибка сервера' },
+      { message: 'Internal server error' },
       { status: 500 }
     );
   }

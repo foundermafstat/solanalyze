@@ -13,7 +13,7 @@ export default function TradeOrdersPendingPage() {
   const fields = [
     {
       name: 'instType',
-      label: 'Тип инструмента',
+      label: 'Type',
       type: 'select' as const,
       required: false,
       options: [
@@ -26,18 +26,18 @@ export default function TradeOrdersPendingPage() {
     },
     {
       name: 'instId',
-      label: 'ID инструмента',
+      label: 'Instrument ID',
       type: 'text' as const,
       required: false,
     },
     {
       name: 'ordType',
-      label: 'Тип ордера',
+      label: 'Order type',
       type: 'select' as const,
       required: false,
       options: [
-        { label: 'Лимитный', value: 'limit' },
-        { label: 'Рыночный', value: 'market' },
+        { label: 'Limit', value: 'limit' },
+        { label: 'Market', value: 'market' },
         { label: 'Post only', value: 'post_only' },
         { label: 'Fill or kill', value: 'fok' },
         { label: 'Immediate or cancel', value: 'ioc' },
@@ -45,7 +45,7 @@ export default function TradeOrdersPendingPage() {
     },
     {
       name: 'state',
-      label: 'Состояние',
+      label: 'State',
       type: 'select' as const,
       required: false,
       options: [
@@ -75,12 +75,12 @@ export default function TradeOrdersPendingPage() {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || 'Произошла ошибка при получении активных ордеров');
+        throw new Error(result.message || 'Error getting pending orders');
       }
       
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла неизвестная ошибка');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
     }
@@ -88,8 +88,8 @@ export default function TradeOrdersPendingPage() {
 
   return (
     <ApiPageLayout 
-      title="Активные ордеры" 
-      description="Получение информации о активных (неисполненных) ордерах"
+      title="Pending Orders" 
+      description="Get information about active (unfulfilled) orders"
       apiEndpoint="/api/trade/orders-pending"
       docsUrl="https://www.okx.com/docs-v5/en/#rest-api-trade-get-order-list"
     >
@@ -97,8 +97,8 @@ export default function TradeOrdersPendingPage() {
         fields={fields}
         onSubmit={handleSubmit}
         isLoading={isLoading}
-        title="Параметры запроса"
-        description="Укажите необязательные параметры для фильтрации списка активных ордеров."
+        title="Request parameters"
+        description="Specify optional parameters to filter the list of active orders."
       />
       
       <ApiResults 

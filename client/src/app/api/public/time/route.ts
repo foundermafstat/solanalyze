@@ -18,9 +18,9 @@ export async function GET() {
     if (!contentType || !contentType.includes('application/json')) {
       // Если ответ не JSON, обрабатываем как текст
       const textResponse = await response.text();
-      console.error('Сервер вернул не JSON:', textResponse.substring(0, 200));
+      console.error('Server returned non-JSON:', textResponse.substring(0, 200));
       return NextResponse.json(
-        { message: 'Сервер вернул некорректный формат данных' },
+        { message: 'Server returned incorrect data format' },
         { status: 500 }
       );
     }
@@ -30,9 +30,9 @@ export async function GET() {
 
     // Если ответ не успешный, возвращаем ошибку
     if (!response.ok) {
-      console.error('Ошибка при получении серверного времени:', data);
+      console.error('Error getting server time:', data);
       return NextResponse.json(
-        { message: data.message || 'Ошибка при получении серверного времени' },
+        { message: data.message || 'Error getting server time' },
         { status: response.status }
       );
     }
@@ -40,9 +40,9 @@ export async function GET() {
     // Возвращаем успешный ответ
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Ошибка при выполнении запроса:', error);
+    console.error('Error during request execution:', error);
     return NextResponse.json(
-      { message: 'Внутренняя ошибка сервера' },
+      { message: 'Internal server error' },
       { status: 500 }
     );
   }

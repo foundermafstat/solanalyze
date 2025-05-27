@@ -13,37 +13,37 @@ export default function MarketCandlesPage() {
   const fields = [
     {
       name: 'instId',
-      label: 'ID инструмента',
+      label: 'Instrument ID',
       type: 'text' as const,
       required: true,
     },
     {
       name: 'bar',
-      label: 'Временной интервал',
+      label: 'Time interval',
       type: 'select' as const,
       required: false,
       options: [
-        { label: '1 минута', value: '1m' },
-        { label: '3 минуты', value: '3m' },
-        { label: '5 минут', value: '5m' },
-        { label: '15 минут', value: '15m' },
-        { label: '30 минут', value: '30m' },
-        { label: '1 час', value: '1H' },
-        { label: '2 часа', value: '2H' },
-        { label: '4 часа', value: '4H' },
-        { label: '6 часов', value: '6H' },
-        { label: '12 часов', value: '12H' },
-        { label: '1 день', value: '1D' },
-        { label: '1 неделя', value: '1W' },
-        { label: '1 месяц', value: '1M' },
-        { label: '3 месяца', value: '3M' },
-        { label: '6 месяцев', value: '6M' },
-        { label: '1 год', value: '1Y' },
+        { label: '1 minute', value: '1m' },
+        { label: '3 minutes', value: '3m' },
+        { label: '5 minutes', value: '5m' },
+        { label: '15 minutes', value: '15m' },
+        { label: '30 minutes', value: '30m' },
+        { label: '1 hour', value: '1H' },
+        { label: '2 hours', value: '2H' },
+        { label: '4 hours', value: '4H' },
+        { label: '6 hours', value: '6H' },
+        { label: '12 hours', value: '12H' },
+        { label: '1 day', value: '1D' },
+        { label: '1 week', value: '1W' },
+        { label: '1 month', value: '1M' },
+        { label: '3 months', value: '3M' },
+        { label: '6 months', value: '6M' },
+        { label: '1 year', value: '1Y' },
       ],
     },
     {
       name: 'limit',
-      label: 'Лимит (количество свечей)',
+      label: 'Limit (number of candles)',
       type: 'text' as const,
       required: false,
     },
@@ -70,12 +70,12 @@ export default function MarketCandlesPage() {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || 'Произошла ошибка при получении свечных данных');
+        throw new Error(result.message || 'Error getting candles data');
       }
       
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла неизвестная ошибка');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
     }
@@ -83,8 +83,8 @@ export default function MarketCandlesPage() {
 
   return (
     <ApiPageLayout 
-      title="Свечи" 
-      description="Получение свечных (OHLC) данных для указанного инструмента"
+      title="Candles" 
+      description="Get candlestick (OHLC) data for the specified instrument"
       apiEndpoint="/api/market/candles"
       docsUrl="https://www.okx.com/docs-v5/en/#rest-api-market-data-get-candlesticks"
     >
@@ -92,8 +92,8 @@ export default function MarketCandlesPage() {
         fields={fields}
         onSubmit={handleSubmit}
         isLoading={isLoading}
-        title="Параметры запроса"
-        description="Укажите ID инструмента и параметры для получения свечных данных."
+        title="Request parameters"
+        description="Specify the instrument ID and parameters to get candlestick data."
       />
       
       <ApiResults 

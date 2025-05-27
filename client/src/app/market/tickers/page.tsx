@@ -13,7 +13,7 @@ export default function MarketTickersPage() {
   const fields = [
     {
       name: 'instType',
-      label: 'Тип инструмента',
+      label: 'Instrument type',
       type: 'select' as const,
       required: true,
       options: [
@@ -26,13 +26,13 @@ export default function MarketTickersPage() {
     },
     {
       name: 'uly',
-      label: 'Базовый актив (опционально)',
+      label: 'Base asset (optional)',
       type: 'text' as const,
       required: false,
     },
     {
       name: 'instFamily',
-      label: 'Семейство инструментов (опционально)',
+      label: 'Instrument family (optional)',
       type: 'text' as const,
       required: false,
     },
@@ -59,12 +59,12 @@ export default function MarketTickersPage() {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || 'Произошла ошибка при получении данных тикеров');
+        throw new Error(result.message || 'Error getting tickers data');
       }
       
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла неизвестная ошибка');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
     }
@@ -72,8 +72,8 @@ export default function MarketTickersPage() {
 
   return (
     <ApiPageLayout 
-      title="Тикеры" 
-      description="Получение последних данных тикеров для всех торговых пар"
+      title="Tickers" 
+      description="Get the latest tickers data for all trading pairs"
       apiEndpoint="/api/market/tickers"
       docsUrl="https://www.okx.com/docs-v5/en/#rest-api-market-data-get-tickers"
     >
@@ -81,8 +81,8 @@ export default function MarketTickersPage() {
         fields={fields}
         onSubmit={handleSubmit}
         isLoading={isLoading}
-        title="Параметры запроса"
-        description="Укажите параметры для получения данных тикеров."
+        title="Request parameters"
+        description="Specify parameters to get tickers data."
       />
       
       <ApiResults 

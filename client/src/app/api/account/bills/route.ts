@@ -31,9 +31,9 @@ export async function GET(request: NextRequest) {
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
       const textResponse = await response.text();
-      console.error('Сервер вернул не JSON:', textResponse.substring(0, 200));
+      console.error('Server returned non-JSON:', textResponse.substring(0, 200));
       return NextResponse.json(
-        { message: 'Сервер вернул некорректный формат данных' },
+        { message: 'Server returned incorrect data format' },
         { status: 500 }
       );
     }
@@ -43,18 +43,18 @@ export async function GET(request: NextRequest) {
 
     // Проверяем на пустые данные
     if (data && Object.keys(data).length === 0) {
-      console.log('Получен пустой ответ от сервера');
+      console.log('Empty response from server');
       return NextResponse.json({
         data: [],
-        message: 'Нет доступных данных по указанным параметрам'
+        message: 'No available data for the specified parameters'
       });
     }
 
     // Если ответ не успешный, возвращаем ошибку
     if (!response.ok) {
-      console.error('Ошибка при получении данных счетов:', data);
+      console.error('Error getting account bills:', data);
       return NextResponse.json(
-        { message: data.message || 'Ошибка при получении данных счетов' },
+        { message: data.message || 'Error getting account bills' },
         { status: response.status }
       );
     }
@@ -62,9 +62,9 @@ export async function GET(request: NextRequest) {
     // Возвращаем успешный ответ
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Ошибка при выполнении запроса:', error);
+    console.error('Error during request execution:', error);
     return NextResponse.json(
-      { message: 'Внутренняя ошибка сервера' },
+      { message: 'Internal server error' },
       { status: 500 }
     );
   }

@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     // Проверяем обязательные параметры
     if (!instType) {
       return NextResponse.json(
-        { message: 'Параметр instType обязателен' },
+        { message: 'Parameter instType is required' },
         { status: 400 }
       );
     }
@@ -21,9 +21,9 @@ export async function GET(request: NextRequest) {
     try {
       await fetch('http://localhost:3001/api/status', { method: 'GET' });
     } catch (serverError) {
-      console.error('Ошибка соединения с сервером:', serverError);
+      console.error('Error connecting to server:', serverError);
       return NextResponse.json(
-        { message: 'Не удалось подключиться к серверу. Убедитесь, что сервер запущен на порту 3001.' },
+        { message: 'Failed to connect to server. Ensure that the server is running on port 3001.' },
         { status: 503 }
       );
     }
@@ -48,10 +48,10 @@ export async function GET(request: NextRequest) {
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
       const textResponse = await response.text();
-      console.error('Сервер вернул не JSON:', textResponse.substring(0, 200));
+      console.error('Server returned non-JSON:', textResponse.substring(0, 200));
       return NextResponse.json(
         { 
-          message: 'Сервер вернул неправильный формат данных. Эндпоинт может не существовать или находиться в процессе разработки.',
+          message: 'Server returned incorrect data format',
           error: 'INVALID_RESPONSE_FORMAT'
         },
         { status: 500 }
@@ -66,9 +66,9 @@ export async function GET(request: NextRequest) {
 
     // Если ответ не успешный, возвращаем ошибку
     if (!response.ok) {
-      console.error('Ошибка при получении данных инструментов:', data);
+      console.error('Error getting public instruments:', data);
       return NextResponse.json(
-        { message: data.message || 'Ошибка при получении данных инструментов' },
+        { message: data.message || 'Error getting public instruments' },
         { status: response.status }
       );
     }
@@ -76,10 +76,10 @@ export async function GET(request: NextRequest) {
     // Возвращаем успешный ответ
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Ошибка при выполнении запроса:', error);
+    console.error('Error during request execution:', error);
     return NextResponse.json(
       { 
-        message: 'Внутренняя ошибка сервера',
+        message: 'Internal server error',
         error: error instanceof Error ? error.message : String(error) 
       },
       { status: 500 }

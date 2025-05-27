@@ -13,7 +13,7 @@ export default function TradeOrdersHistoryPage() {
   const fields = [
     {
       name: 'instType',
-      label: 'Тип инструмента',
+      label: 'Instrument type',
       type: 'select' as const,
       required: true,
       options: [
@@ -26,18 +26,18 @@ export default function TradeOrdersHistoryPage() {
     },
     {
       name: 'instId',
-      label: 'ID инструмента',
+      label: 'Instrument ID',
       type: 'text' as const,
       required: false,
     },
     {
       name: 'ordType',
-      label: 'Тип ордера',
+      label: 'Order type',
       type: 'select' as const,
       required: false,
       options: [
-        { label: 'Лимитный', value: 'limit' },
-        { label: 'Рыночный', value: 'market' },
+        { label: 'Limit', value: 'limit' },
+        { label: 'Market', value: 'market' },
         { label: 'Post only', value: 'post_only' },
         { label: 'Fill or kill', value: 'fok' },
         { label: 'Immediate or cancel', value: 'ioc' },
@@ -45,7 +45,7 @@ export default function TradeOrdersHistoryPage() {
     },
     {
       name: 'state',
-      label: 'Состояние',
+      label: 'State',
       type: 'select' as const,
       required: false,
       options: [
@@ -55,7 +55,7 @@ export default function TradeOrdersHistoryPage() {
     },
     {
       name: 'limit',
-      label: 'Лимит записей',
+      label: 'Limit',
       type: 'text' as const,
       required: false,
     },
@@ -84,12 +84,12 @@ export default function TradeOrdersHistoryPage() {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.message || 'Произошла ошибка при получении истории ордеров');
+        throw new Error(result.message || 'Error getting order history');
       }
       
       setData(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Произошла неизвестная ошибка');
+      setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
       setIsLoading(false);
     }
@@ -97,8 +97,8 @@ export default function TradeOrdersHistoryPage() {
 
   return (
     <ApiPageLayout 
-      title="История ордеров" 
-      description="Получение информации об истории торговых ордеров"
+      title="Order history" 
+      description="Get information about order history"
       apiEndpoint="/api/trade/orders-history"
       docsUrl="https://www.okx.com/docs-v5/en/#rest-api-trade-get-order-history-last-3-months"
     >
@@ -106,8 +106,8 @@ export default function TradeOrdersHistoryPage() {
         fields={fields}
         onSubmit={handleSubmit}
         isLoading={isLoading}
-        title="Параметры запроса"
-        description="Укажите параметры для фильтрации истории ордеров."
+        title="Request parameters"
+        description="Specify parameters to filter order history."
       />
       
       <ApiResults 
