@@ -80,7 +80,7 @@ export function NavUser() {
             style={{
               width: "100%",
               minWidth: 0,
-              fontSize: "0.95rem",
+              fontSize: "0.75rem",
               fontWeight: 600,
               borderRadius: "0.75rem",
               background: "#2563eb",
@@ -99,7 +99,7 @@ export function NavUser() {
               height: 44,
             }}
             className="hover:bg-blue-700 focus-visible:ring-2 focus-visible:ring-blue-300 focus-visible:ring-offset-2 focus-visible:outline-none"
-            aria-label="Подключить кошелек"
+            aria-label="Connect wallet"
           >
             <svg viewBox="0 0 24 24" fill="none" width="22" height="22" className="text-white">
               <rect x="3" y="7" width="18" height="10" rx="2" fill="#fff" fillOpacity={0.2}/>
@@ -171,12 +171,12 @@ export function NavUser() {
             <DropdownMenuGroup>
               <DropdownMenuItem onClick={handleCopy} className="cursor-pointer">
                 <Copy className="mr-2 size-4" />
-                {copied ? "Скопировано!" : "Скопировать адрес"}
+                {copied ? "Copied!" : "Copy address"}
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
                 <Link href={address ? `/account/${address}` : "#"} className="cursor-pointer">
                   <Globe2 className="mr-2 size-4" />
-                  Мой аккаунт
+                  My account
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
@@ -192,10 +192,10 @@ export function NavUser() {
                 }
               }}
               className="cursor-pointer text-destructive"
-              aria-label="Отключить кошелек"
+              aria-label="Disconnect wallet"
             >
               <LogOut className="mr-2 size-4" />
-              Отключить
+              Disconnect
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

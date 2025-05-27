@@ -1,4 +1,4 @@
-import { AxiosRequestConfig } from '../server/node_modules/axios';
+import { AxiosRequestConfig } from 'axios';
 
 import { ASSET_BILL_TYPE } from './constants';
 import {

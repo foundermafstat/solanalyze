@@ -19,6 +19,7 @@ const geistMono = Geist_Mono({
 import DashboardLayout from './components/layout/DashboardLayout';
 import { ThemeProvider } from './components/ui/ThemeProvider';
 import { SolanaWalletProvider } from './components/SolanaWalletProvider';
+import { TranslationsProvider } from '@/components/agent/translations-context';
 
 function Providers({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
@@ -32,11 +33,13 @@ function Providers({ children }: { children: React.ReactNode }) {
   }
 
   return (
+		<TranslationsProvider>
     <ThemeProvider>
       <SolanaWalletProvider>
         <DashboardLayout>{children}</DashboardLayout>
       </SolanaWalletProvider>
     </ThemeProvider>
+		</TranslationsProvider>
   );
 }
 

@@ -1,6 +1,6 @@
-import { Method } from '../../server/node_modules/axios';
+import type { Method } from 'axios';
 
-import { APIMarket, RestClientOptions } from '../types';
+import type { APIMarket, RestClientOptions } from '../types';
 
 export function serializeParams(
   params: object | undefined,

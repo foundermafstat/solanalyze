@@ -1,7 +1,7 @@
-import { RestClient, WebsocketClient } from '../../src/index';
+import { RestClient, WebsocketClient } from '../src';
 
 // or
-// import { RestClient} from 'okx-api';
+// import { RestClient } from 'okx-api';
 
 // read from environmental variables, your demo trading keys
 const API_KEY = process.env.API_KEY_COM;

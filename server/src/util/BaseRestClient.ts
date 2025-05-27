@@ -1,10 +1,6 @@
-import axios, {
-  AxiosRequestConfig,
-  AxiosResponse,
-  Method,
-} from '../../server/node_modules/axios';
+import type { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 
-import { APIResponse, RestClientOptions } from '../types';
+import type { APIResponse, RestClientOptions } from '../types';
 import { signMessage } from './node-support';
 import {
   getRestBaseUrl,
